@@ -1,0 +1,177 @@
+/* ==========================================================================
+   Group
+   ========================================================================== */
+/**
+ * Create a visual connection between UI actions that belong together.
+ * Must only contain `Group-item` objects as children.
+ *
+ * Supports by default:
+ *   `Button`
+ *   `FormControl`
+ *
+ * Example HTML:
+ *
+ * Only `.Button`
+ *
+ * <div class="Group">
+ *   <div class="Group-item">
+ *     <a class="Button" href="#">Dashboard</a>
+ *   </div>
+ *   <div class="Group-item">
+ *     <a class="Button" href="#">Account</a>
+ *   </div>
+ *   <div class="Group-item">
+ *     <a class="Button" href="#">Logout</a>
+ *   </div>
+ * </div>
+ *
+ * `.Button` with `.FormControl`
+ *
+ * <div class="Group">
+ *   <div class="Group-item">
+ *     <input class="FormControl" type="text">
+ *   </div>
+ *   <div class="Group-item">
+ *     <a class="Button" href="#">Logout</a>
+ *   </div>
+ * </div>
+ */
+/* Variables
+   ========================================================================== */
+/**
+ * Bits.sass components namespace
+ */
+/* 1 */
+/**
+ * List of supported (ie. accounted for) components inside a group.
+ */
+/**
+ * Default size of `Button` and `FormControl` border width.
+ */
+/* Helper variables */
+/**
+ * Boolean indicating whether the `Button` component is supported
+ */
+/* Component
+   ========================================================================== */
+/**
+ * Group
+ *
+ * 1. Remove inter-child whitespace for all non-monospace font-families.
+ * 2. Protect against WebKit bug with optimizelegibility
+ * 3. Prevent wrapping across multiple lines.
+ */
+.bits-Group {
+  display: inline-block;
+  vertical-align: middle;
+  letter-spacing: -0.31em;
+  /* 1 */
+  text-rendering: optimizespeed;
+  /* 2 */
+  white-space: nowrap;
+  /* 3 */ }
+
+/**
+ * Hack to remove inter-child whitespace in Opera for Windows. All other
+ * supported browsers will drop the ruleset.
+ */
+.opera:-o-prefocus,
+.bits-Group {
+  word-spacing: -0.43em; }
+
+/* Descendants
+   ========================================================================== */
+/**
+ * Group item
+ *
+ * 1. Ensure that adjacent `Button` or `FormControl` borders slide over each
+ *    other. Must match the value of the their border width.
+ * 2. Provide a consistent vertical alignment and avoid vertical whitespace in
+ *    the component.
+ * 3. Reset the text defaults altered in `.Group`.
+ * 4. Reset margin for the first item.
+ */
+.bits-Group-item {
+  display: inline-block;
+  margin-left: -1px;
+  /* 1 */
+  vertical-align: top;
+  /* 2 */
+  letter-spacing: normal;
+  /* 3 */
+  text-rendering: auto;
+  /* 3 */
+  word-spacing: normal;
+  /* 3 */ }
+  .bits-Group-item:first-child {
+    margin-left: 0;
+    /* 4 */ }
+
+/**
+ * Ensure that interactions with a button make it sit on top of other buttons
+ * in the group.
+ */
+.bits-Group-item .bits-Button:hover, .bits-Group-item .bits-Button:focus, .bits-Group-item .bits-Button:active, .bits-Group-item .bits-Button.is-pressed {
+  z-index: 1; }
+
+/* Component modifiers
+   ========================================================================== */
+/* Vertical group */
+/**
+ * 1. Make the item block-level.
+ * 2. Ensure that adjacent `Button` or `FormControl` borders slide over each
+ *    other. Must match the value of the their border width.
+ * 3. Remove left margin.
+ * 4. Reset margin for the first item.
+ */
+.bits-Group--vertical > .bits-Group-item {
+  display: block;
+  /* 1 */
+  margin-top: -1px;
+  /* 2 */
+  margin-left: 0;
+  /* 3 */ }
+  .bits-Group--vertical > .bits-Group-item:first-child {
+    margin-top: 0;
+    /* 4 */ }
+
+/**
+ * Make all descendant buttons block-level
+ */
+.bits-Group--vertical .bits-Button {
+  display: block;
+  width: 100%; }
+
+/* Misc
+   ========================================================================== */
+/**
+ * Remove the `border-radius` on adjacent sides of `Button` or `FormControl
+ * components.
+ *
+ * Apply to default, horizontal group.
+ *
+ * We can rely on these pseudo-class selectors because one of the group
+ * requirements is that it only contains `Group-item` as children.
+ *
+ * All browsers that support `border-radius` also support `:not()`.
+ */
+.bits-Group:not(.Group--vertical) > .bits-Group-item:not(:first-child):not(:last-child) .bits-Button, .bits-Group:not(.Group--vertical) > .bits-Group-item:not(:first-child):not(:last-child) .bits-FormControl {
+  border-radius: 0; }
+.bits-Group:not(.Group--vertical) > .bits-Group-item:first-child:not(:only-child) .bits-Button, .bits-Group:not(.Group--vertical) > .bits-Group-item:first-child:not(:only-child) .bits-FormControl {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0; }
+.bits-Group:not(.Group--vertical) > .bits-Group-item:last-child:not(:only-child) .bits-Button, .bits-Group:not(.Group--vertical) > .bits-Group-item:last-child:not(:only-child) .bits-FormControl {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0; }
+
+/**
+ * Appropriate removal of `border-radius` for vertically stacked components.
+ */
+.bits-Group--vertical > .bits-Group-item:not(:first-child):not(:last-child) .bits-Button, .bits-Group--vertical > .bits-Group-item:not(:first-child):not(:last-child) .bits-FormControl {
+  border-radius: 0; }
+.bits-Group--vertical > .bits-Group-item:first-child:not(:only-child) .bits-Button, .bits-Group--vertical > .bits-Group-item:first-child:not(:only-child) .bits-FormControl {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0; }
+.bits-Group--vertical > .bits-Group-item:last-child:not(:only-child) .bits-Button, .bits-Group--vertical > .bits-Group-item:last-child:not(:only-child) .bits-FormControl {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0; }

@@ -1,0 +1,94 @@
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+/**
+ * The button classes are best applied to links, buttons, and submit inputs.
+ * These components can be used in forms, as calls to action, or as part of the
+ * general UI of the site/app.
+ *
+ * Recommended use:
+ *
+ * <a class="Button [Button--modifier]" role="button" href="[url]">Button text</a>
+ * <button class="Button [Button--modifier]" type="submit">Button text</button>
+ * <input class="Button [Button--modifier]" type="submit" value="Button text">
+ */
+/* Variables
+   ========================================================================== */
+/**
+ * Bits.sass components namespace
+ */
+/* 1 */
+/* Component
+   ========================================================================== */
+/**
+ * Button template
+ *
+ * Build on this component using rulesets in your application-level CSS.
+ *
+ * 1. Prevent button text from being selectable.
+ * 2. Corrects inability to style clickable `input` types in iOS
+ * 3. Normalize `box-sizing` across all elements that this component could be
+ *    applied to.
+ * 4. Inherit text color from ancestor.
+ * 5. Inherit font styles from ancestor.
+ * 6. Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+.
+ * 7. Prevent wrapping across multiple lines.
+ */
+.bits-Button {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* 1 */
+  -webkit-appearance: none;
+  /* 2 */
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  /* 3 */
+  display: inline-block;
+  position: relative;
+  margin: 0;
+  padding: 0.4em 0.75em;
+  vertical-align: middle;
+  color: inherit;
+  /* 4 */
+  cursor: pointer;
+  font: inherit;
+  /* 5 */
+  line-height: normal;
+  /* 6 */
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  /* 7 */
+  border: 1px solid;
+  background: transparent; }
+
+/* UI states */
+.bits-Button:hover, .bits-Button:focus, .bits-Button:active {
+  text-decoration: none; }
+
+/**
+ * These two rules need to be separated due to IE 8 bug
+ */
+.bits-Button:disabled {
+  cursor: default; }
+
+.bits-Button.is-disabled {
+  cursor: default; }
+
+/**
+ * Remove excess padding and border in Firefox 4+
+ */
+.bits-Button::-moz-focus-inner {
+  padding: 0;
+  border: 0; }
+
+/* Component modifiers
+   ========================================================================== */
+/**
+ * Full-width buttons
+ */
+.bits-Button--full {
+  display: block;
+  width: 100%; }
