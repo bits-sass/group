@@ -15,6 +15,8 @@ Read more about [Bits.sass toolkit](https://github.com/bits-sass/bits.sass).
 
 * `bits-components-ns` - components namespace, defaults to 'bits-'
 * `bits-group-border-width` - size of `Button` and `FormControl` border width
+* `bits-group-supported-selectors` - list of supported (ie. accounted for)
+  components inside a group
 
 ## Available classes
 
@@ -32,18 +34,19 @@ An element with the `Group` class must be used to wrap a collection of elements
 with the `Group-item` class. The `Group` component *must* only contain
 `Group-item` components as children.
 
-The button group items may contain other components, e.g., [Bits.sass button](https://github.com/bits-sass/button)
-or buttons with dropdown menus.
+The button group items may contain other components, e.g., [Bits.sass button]
+(https://github.com/bits-sass/button), buttons with dropdown menus or
+[Bits.sass form control](https://github.com/bits-sass/form-control).
 
 ```html
-<div class="ButtonGroup">
-  <div class="ButtonGroup-item">
+<div class="Group">
+  <div class="Group-item">
     <a class="Button" href="#">Dashboard</a>
   </div>
-  <div class="ButtonGroup-item">
+  <div class="Group-item">
     <a class="Button" href="#">Settings</a>
   </div>
-  <div class="ButtonGroup-item with-Dropdown">
+  <div class="Group-item with-Dropdown">
     <a class="Button js-dropdownToggle" href="#">
       Account
       <i class="Icon Icon--caret"></i>
@@ -55,36 +58,47 @@ or buttons with dropdown menus.
 </div>
 ```
 
+Be default, the group works with `Button` and `FormControl` components.
+
+```html
+<div class="Group">
+  <div class="Group-item">
+    <input class="FormControl" type="text">
+  </div>
+  <div class="Group-item">
+    <a class="Button" href="#">Send</a>
+  </div>
+</div>
+```
+
 This component intelligently removes certain `border-radius` values from
-your application-level button theme.
+your application-level button and form control theme.
 
 ## Customising
 
 Your application-level CSS can build upon this component.
 
-If your app's button theme uses a border width other than `1px`, you can adjust the
-button group component to accommodate this. For example, if your buttons used
-3px borders, you would add this rule to your application-level CSS:
+If your app's button theme uses a border width other than `1px`, you can adjust
+the `bits-group-border-width` variable. For example, if your buttons and form
+controls used 3px borders, you would modify the variable:
 
 ```scss
-.ButtonGroup-item {
-  margin-left: -3px;
-}
+$bits-group-border-width: 3px;
 ```
 
-If you need to adjust the space between buttons, or buttons and button groups,
-or multiple button groups, you might want to add a rule like this to your
+If you need to adjust the space between buttons, or buttons and groups,
+or multiple groups, you might want to add a rule like this to your
 application-level CSS:
 
 ```scss
 /**
- * Add some space between adjacent .btn and .btn-group components
+ * Add some space between adjacent .Button and .Group components
  */
 
 .Button + .Button,
-.Button + .ButtonGroup,
-.ButtonGroup + .Button,
-.ButtonGroup + .ButtonGroup {
+.Button + .Group,
+.Group + .Button,
+.Group + .Group {
   margin-left: 5px;
 }
 ```
