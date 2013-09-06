@@ -11,6 +11,10 @@ Read more about [Bits.sass toolkit](https://github.com/bits-sass/bits.sass).
 * __Download:__ [zip](https://github.com/bits-sass/group/zipball/master), [tar.gz](https://github.com/bits-sass/group/tarball/master)
 * __Git:__ `git clone https://github.com/bits-sass/group.git`
 
+## Demo
+
+See [demo](https://rawgithub.com/bits-sass/group/master/demo/index.html).
+
 ## Available SASS variables
 
 * `bits-components-ns` - components namespace, defaults to 'bits-'
