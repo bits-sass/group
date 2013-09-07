@@ -79,7 +79,11 @@ $bits-group-has-button: index(
 /**
  * Group
  *
- * 1. Remove inter-child whitespace for all non-monospace font-families.
+ * 1. Remove inter-unit whitespace that appears between `inline-block` child
+ *    elements. Work for all non-monospace font-families.  If you're using a
+ *    monospace base font, you will need to set the `Group` font-family to
+ *   `sans-serif` and then redeclare the monospace font on the `Group-item`
+ *    objects.
  * 2. Protect against WebKit bug with optimizelegibility
  * 3. Prevent wrapping across multiple lines.
  */
